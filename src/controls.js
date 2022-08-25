@@ -12,6 +12,7 @@ export class Controls {
 
     this.addEventListeners();
     this.updateBodyData();
+    this.udpateEditableData();
   }
 
   addEventListeners() {
@@ -61,6 +62,99 @@ export class Controls {
         )}\u003E</p>
         <p><b>Velocidad:</b> ${arrToVector(curr.v)}</p>
         <p><b>Aceleracion:</b> ${arrToVector(curr.a)}</p>
+      </div>
+    </div>
+    `,
+      ""
+    );
+  }
+
+  udpateEditableData() {
+    this.bodyEditorData.innerHTML = this.simulation.initialBodys.reduce(
+      (prev, curr) =>
+        prev +
+        ` 
+    <div class="collapse collapse-arrow border border-base-300 rounded-box">
+      <input type="checkbox" />
+      <div class="collapse-title text-xl font-medium">
+        Cuerpo: ${curr.name}
+      </div>
+      <div class="collapse-content flex">
+        <div class="grid grid-cols-2 gap-10">
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <span class="label-text mr-3">Fijo:</span> 
+              <input type="checkbox" ${
+                curr.fixed ? 'checked="checked"' : ""
+              }  class="checkbox" />
+            </label>
+            <label class="label cursor-pointer">
+              <span class="label-text mr-3">Masa:</span> 
+              <input type="text" placeholder="Masa del cuerpo" value="${
+                curr.mass
+              }" class="input input-sm input-bordered w-full max-w-xs" />
+            </label>
+            <div class="flex items-center justify-between">
+              <span class="label-text mr-3">Posicion:</span> 
+              <div class="flex">
+                <label class="label cursor-pointer">
+                  <span class="label-text mr-3">X:</span> 
+                  <input type="text" value="${
+                    curr.x
+                  }" class="input input-sm input-bordered w-20 max-w-xs" />
+                </label>
+                <label class="label cursor-pointer">
+                  <span class="label-text mr-3">Y:</span> 
+                  <input type="text" value="${
+                    curr.y
+                  }" class="input input-sm input-bordered w-20 max-w-xs" />
+                </label>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="label-text mr-3">Velocidad:</span> 
+              <div class="flex">
+                <label class="label cursor-pointer">
+                  <span class="label-text mr-3">X:</span> 
+                  <input type="text" value="${
+                    curr.v[0]
+                  }" class="input input-sm input-bordered w-20 max-w-xs" />
+                </label>
+                <label class="label cursor-pointer">
+                  <span class="label-text mr-3">Y:</span> 
+                  <input type="text" value="${
+                    curr.v[1]
+                  }" class="input input-sm input-bordered w-20 max-w-xs" />
+                </label>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="label-text mr-3">Aceleracion:</span> 
+              <div class="flex">
+                <label class="label cursor-pointer">
+                  <span class="label-text mr-3">X:</span> 
+                  <input type="text" value="${
+                    curr.a[0]
+                  }" class="input input-sm input-bordered w-20 max-w-xs" />
+                </label>
+                <label class="label cursor-pointer">
+                  <span class="label-text mr-3">Y:</span> 
+                  <input type="text" value="${
+                    curr.a[1]
+                  }" class="input input-sm input-bordered w-20 max-w-xs" />
+                </label>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="label cursor-pointer">
+              <span class="label-text mr-3">Nombre:</span> 
+              <input type="text" placeholder="Nombre del cuerpo" value="${
+                curr.name
+              }" class="input input-sm input-bordered w-full max-w-xs" />
+            </label>
+          </div>
+        </div>
       </div>
     </div>
     `,

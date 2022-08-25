@@ -56,7 +56,6 @@ export class Simulation {
     if (!this.paused) {
       this.update();
     }
-    this.ctx.font = "25px Arial";
 
     this.bodys.forEach(({ name, radius, history, x, y }) => {
       if (history.length > 1) {
@@ -79,7 +78,9 @@ export class Simulation {
       this.ctx.strokeStyle = "#f9fafb";
       this.ctx.stroke();
       this.ctx.fillStyle = "#f9fafb";
-      this.ctx.fillText(name, x - 10, y + 10);
+      this.ctx.font = `${radius}px Arial`;
+      this.ctx.textAlign = "center";
+      this.ctx.fillText(name, x, y + radius / 3);
     });
 
     requestAnimationFrame(this.draw.bind(this));

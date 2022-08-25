@@ -8,10 +8,13 @@ export class Simulation {
     this.canvas.width = window.innerWidth / 2;
     this.canvas.height = window.innerHeight;
 
-    this.updateEvent = new CustomEvent("bodys-update", { bodys: this.bodys });
-
     this.reset();
     this.draw();
+  }
+
+  restart(bodys) {
+    this.initialBodys = JSON.parse(JSON.stringify(bodys));
+    this.reset();
   }
 
   run() {

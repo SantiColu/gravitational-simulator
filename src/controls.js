@@ -1,8 +1,12 @@
+import { configs } from "./config";
+
 export class Controls {
   constructor(simulation) {
     this.simulation = simulation;
     this.pauseButton = document.getElementById("pauseButton");
     this.resetButton = document.getElementById("resetButton");
+    this.selectScenario = document.getElementById("select-scenario");
+
     this.realTimeData = document.getElementById("realTimeData");
 
     this.bodyEditorContainer = document.getElementById("bodyEditor-collapse");
@@ -44,6 +48,11 @@ export class Controls {
 
     document.addEventListener("bodys-update", () => {
       this.updateBodyData();
+    });
+
+    this.selectScenario.addEventListener("change", (e) => {
+      const bodys = configs[e.target.value];
+      this.simulation.restart(bodys);
     });
   }
 

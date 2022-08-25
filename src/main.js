@@ -6,7 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 const canvas = document.getElementById("canvas");
 
-const bodys = configs["orbita"];
+const bodys = configs["punto-4"];
 
 const simulation = new Simulation(canvas, bodys);
 
